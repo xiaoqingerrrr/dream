@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * @Auther: song biao wei
  * @Date: 2018/9/13 15:34
- * @Description: 首页控制类 没有整合视图 （后面可能会整合 Thymeleaf jsp freemarker等视图）
+ * @Description: 首页控制类
  */
 @Controller
 @RequestMapping(value = "/index")
 public class IndexController {
 
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
     public String index() {
-        return "{\"hi\":\"my name is song biao wei\"}";
+        return "index";
     }
 }

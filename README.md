@@ -14,4 +14,6 @@ master主分支: spring + springMVC
          2、新建基础配置类
          3、启动项目 访问http://localhost:8080/index 会出现 {"hi":"my name is song biao wei"} 
          4、证明基础架构完成
+branch-jsp-mybatis:
+         1、整合jsp和mybatis
          

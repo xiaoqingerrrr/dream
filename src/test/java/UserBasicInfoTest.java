@@ -8,9 +8,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import web.config.WebConfig;
+import web.dao.RolesMapper;
 import web.dao.UserBasicInfoMapper;
+import web.entity.Roles;
 import web.entity.UserBasicInfo;
 import web.service.UserBasicInfoService;
+
+import java.util.List;
 
 /**
  * @Auther: song biao wei
@@ -25,11 +29,21 @@ public class UserBasicInfoTest {
 
     // RootConfig配置类里面扫描了 所有的mapper 所以给mapper注入进来   如果这里是service就会报错
     @Autowired
-    private UserBasicInfoMapper userBasicInfoService;
+    private UserBasicInfoMapper userBasicInfoMapper;
+
+    @Autowired
+    private RolesMapper rolesMapper;
 
     @Test
     public void testSelect() {
-        UserBasicInfo basicInfo = userBasicInfoService.selectUserByloginName("songbiaowei");
+        UserBasicInfo basicInfo = userBasicInfoMapper.selectUserByloginName("songbiaowei");
         System.out.println(basicInfo);
+    }
+
+    // 测试tk.mybatis的方法
+    @Test
+    public void testTkMybatis() {
+        List<Roles> rolesList = rolesMapper.selectAll();
+        System.out.println(rolesList.size());
     }
 }

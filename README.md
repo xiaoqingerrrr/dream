@@ -9,6 +9,19 @@ branch-jsp-mybatis:
             然后打开idea的Terminal执行
             mvn mybatis-generator:generate就会生成实体类和mapper,mapperxml
          5、配置pagehelper分页 pagehelper版本用的是4.1.6 用最新版本有报错 需要注意   
+         6、如果想给mapper文件目录放在web目录下 
+            可以在pom文件加上
+            <build>
+                <!--指定配置文件位置-->
+                <resources>
+                    <resource>
+                        <directory>src/main/java</directory>
+                        <includes>
+                            <include>**/*.xml</include>
+                        </includes>
+                    </resource>
+                </resources>
+            </build>
          
          
 环境：jdk1.8 + spring5.0 + tomcat7 工具：IDEA

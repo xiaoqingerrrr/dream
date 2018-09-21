@@ -10,8 +10,10 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import web.config.WebConfig;
 import web.dao.RolesMapper;
 import web.dao.UserBasicInfoMapper;
+import web.dao.UserDetailMapper;
 import web.entity.Roles;
 import web.entity.UserBasicInfo;
+import web.entity.UserDetail;
 import web.service.UserBasicInfoService;
 
 import java.util.List;
@@ -34,6 +36,10 @@ public class UserBasicInfoTest {
     @Autowired
     private RolesMapper rolesMapper;
 
+    @Autowired
+    private UserDetailMapper userDetailMapper;
+
+    // 测试整合mybatis
     @Test
     public void testSelect() {
         UserBasicInfo basicInfo = userBasicInfoMapper.selectUserByloginName("songbiaowei");
@@ -45,5 +51,12 @@ public class UserBasicInfoTest {
     public void testTkMybatis() {
         List<Roles> rolesList = rolesMapper.selectAll();
         System.out.println(rolesList.size());
+    }
+
+    // 测试生成代码mbg
+    @Test
+    public void testMBG() {
+        List<UserDetail> detailList = userDetailMapper.selectAll();
+        System.out.println(detailList.size());
     }
 }

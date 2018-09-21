@@ -8,6 +8,8 @@ branch-jsp-mybatis:
             在generatorConfig.xml里面配置tableName 
             然后打开idea的Terminal执行
             mvn mybatis-generator:generate就会生成实体类和mapper,mapperxml
+         5、配置pagehelper分页 pagehelper版本用的是4.1.6 用最新版本有报错 需要注意   
+         
          
 环境：jdk1.8 + spring5.0 + tomcat7 工具：IDEA
          

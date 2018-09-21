@@ -1,3 +1,5 @@
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import config.RootConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,4 +61,14 @@ public class UserBasicInfoTest {
         List<UserDetail> detailList = userDetailMapper.selectAll();
         System.out.println(detailList.size());
     }
+
+    // 测试PageHelper
+    @Test
+    public void testPageHelper() {
+        PageHelper.startPage(2, 5);
+        List<UserDetail> detailList = userDetailMapper.selectAll();
+        PageInfo<UserDetail> pageInfo = new PageInfo<>(detailList);
+        System.out.println(detailList.size());
+    }
+
 }

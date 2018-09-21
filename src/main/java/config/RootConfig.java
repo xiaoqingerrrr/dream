@@ -1,6 +1,8 @@
 package config;
 
+import com.github.pagehelper.PageHelper;
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.ibatis.plugin.Interceptor;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -8,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import tk.mybatis.spring.mapper.MapperScannerConfigurer;
+
+import java.util.Properties;
 
 /**
  * @Auther: song biao wei
@@ -60,6 +64,14 @@ public class RootConfig {
         try {
             Resource[] resources = resolver.getResources("classpath:mapper/*.xml");
             sqlSessionFactory.setMapperLocations(resources);
+            Interceptor[] arrInterceptor = new Interceptor[1];
+            Interceptor pageInterceptor = new PageHelper();
+            Properties properties = new Properties();
+            properties.put("dialect", "mysql");
+            properties.put("reasonable", true);
+            pageInterceptor.setProperties(properties);
+            arrInterceptor[0] = pageInterceptor;
+            sqlSessionFactory.setPlugins(arrInterceptor);
             return sqlSessionFactory;
         } catch (Exception e) {
             e.printStackTrace();
